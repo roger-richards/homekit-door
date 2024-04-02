@@ -26,9 +26,14 @@ function Door() {
         mode: "text",
         pythonPath: "/usr/bin/python3",
         pythonOptions: ["-u"],
-        scriptPath: "python/"
+        scriptPath: "../python/"
     });
-
+    
+    // PythonShell error listener
+    this.pyshell.on('error', function(err) {
+        console.error('Error from Python script:', err);
+    });
+    
     this.lock = () => {
         console.log("locking door");
         this.pyshell.send("lock");
